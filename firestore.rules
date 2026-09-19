@@ -1,0 +1,32 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /members/{memberId} {
+      allow read, write: if true;
+    }
+    match /contributions/{contribId} {
+      allow read, write: if true;
+    }
+    match /rewards/{rewardId} {
+      allow read, write: if true;
+    }
+    match /badges/{badgeId} {
+      allow read, write: if true;
+    }
+    match /memberBadges/{mbId} {
+      allow read, write: if true;
+    }
+    match /config/{configId} {
+      allow read, write: if true;
+    }
+    match /activityLogs/{logId} {
+      allow read, write: if true;
+    }
+    match /snapshots/{snapshotId} {
+      allow read, write: if true;
+    }
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}

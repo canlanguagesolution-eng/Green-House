@@ -1,0 +1,6 @@
+{
+  "name": "敬社成員管理系統",
+  "description": "學校敬社（House of Reverence）成員管理系統，支援系統管理員、老師管理員、學生管理員及社員四級登入，提供徽章體系、新學年交接、名冊更新比對、貢獻與獎勵積分標準及全方位社務管理。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

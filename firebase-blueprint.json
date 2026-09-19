@@ -1,0 +1,130 @@
+{
+  "projectId": "pess-admin",
+  "firestoreDatabaseId": "ai-studio-reverencehub-3dec720e-e926-408b-a9cf-2a0ce591ff22",
+  "collections": {
+    "members": {
+      "description": "敬社成員與管理員名冊 (包含系統管理員、老師管理員、學生管理員及社員)",
+      "fields": {
+        "id": { "type": "string", "description": "成員唯一代碼，例如 M000, T001, C001, M001" },
+        "studentId": { "type": "string", "description": "學號或教職員編號" },
+        "name": { "type": "string", "description": "中文全名" },
+        "englishName": { "type": "string", "description": "英文姓名" },
+        "class": { "type": "string", "description": "班別，如 5A 或 STAFF/HEAD" },
+        "classNumber": { "type": "string", "optional": true, "description": "班號" },
+        "role": { "type": "string", "description": "權限角色: master | teacher | committee | member" },
+        "committeeRoleKey": { "type": "string", "description": "學生管理員特定職銜代碼" },
+        "committeeTitle": { "type": "string", "description": "顯示職位名稱，如 系統管理員, 敬社主席, 普通社員" },
+        "avatar": { "type": "string", "description": "個人相片頭像連結" },
+        "joinedYear": { "type": "number", "description": "入社學年" },
+        "totalPoints": { "type": "number", "description": "個人累積社貢獻點數" },
+        "phone": { "type": "string", "optional": true, "description": "聯絡電話" },
+        "email": { "type": "string", "optional": true, "description": "電郵地址" },
+        "status": { "type": "string", "description": "社籍狀態: active | graduated | inactive" },
+        "passcode": { "type": "string", "optional": true, "description": "登入或管理驗證代碼" }
+      }
+    },
+    "contributions": {
+      "description": "成員社務成就、賽事獲獎與出賽貢獻紀錄",
+      "fields": {
+        "id": { "type": "string", "description": "貢獻紀錄唯一編號" },
+        "memberId": { "type": "string", "description": "所屬成員ID" },
+        "memberName": { "type": "string", "description": "成員中文名" },
+        "memberClass": { "type": "string", "description": "成員班別" },
+        "title": { "type": "string", "description": "活動或賽事成就標題" },
+        "category": { "type": "string", "description": "活動類別: sports | arts | cheering | service | organization | academic" },
+        "points": { "type": "number", "description": "核計發放點數" },
+        "date": { "type": "string", "description": "活動發生日期 YYYY-MM-DD" },
+        "recordedBy": { "type": "string", "description": "登記審核人員姓名" },
+        "recordedByRole": { "type": "string", "description": "登記人員職位" },
+        "description": { "type": "string", "description": "事蹟具體說明" },
+        "status": { "type": "string", "description": "認證狀態: verified | pending" }
+      }
+    },
+    "rewards": {
+      "description": "老師管理員頒發之正式嘉許狀與表彰紀錄",
+      "fields": {
+        "id": { "type": "string", "description": "嘉許狀唯一編號" },
+        "memberId": { "type": "string", "description": "獲獎成員ID" },
+        "memberName": { "type": "string", "description": "成員姓名" },
+        "memberClass": { "type": "string", "description": "成員班別" },
+        "memberRole": { "type": "string", "description": "成員當時角色" },
+        "title": { "type": "string", "description": "嘉許狀稱謂" },
+        "category": { "type": "string", "description": "類別" },
+        "points": { "type": "number", "description": "嘉獎點數" },
+        "date": { "type": "string", "description": "頒授日期" },
+        "awardedBy": { "type": "string", "description": "頒發老師" },
+        "comment": { "type": "string", "description": "老師嘉許寄語" },
+        "badgeAwardedId": { "type": "string", "optional": true, "description": "伴隨附贈之勳章ID" }
+      }
+    },
+    "badges": {
+      "description": "敬社全體榮譽徽章體系定義",
+      "fields": {
+        "id": { "type": "string", "description": "徽章唯一代碼" },
+        "name": { "type": "string", "description": "徽章正式全名" },
+        "category": { "type": "string", "description": "適用群體: member | committee | both" },
+        "tier": { "type": "string", "description": "階級: bronze | silver | gold | diamond" },
+        "iconName": { "type": "string", "description": "Lucide圖標名稱" },
+        "description": { "type": "string", "description": "徽章意涵描述" },
+        "requirement": { "type": "string", "description": "獲得門檻標準" },
+        "pointsReward": { "type": "number", "description": "獲取時獎勵之額外點數" },
+        "isSpecialTeacherOnly": { "type": "boolean", "optional": true, "description": "是否限老師特批" }
+      }
+    },
+    "memberBadges": {
+      "description": "成員獲授勳章持有清單",
+      "fields": {
+        "id": { "type": "string", "description": "頒授紀錄ID" },
+        "memberId": { "type": "string", "description": "成員ID" },
+        "badgeId": { "type": "string", "description": "獲頒徽章ID" },
+        "awardedAt": { "type": "string", "description": "頒授日期" },
+        "reason": { "type": "string", "description": "獲獎成就或原由" },
+        "awardedBy": { "type": "string", "description": "頒發者或系統認證" }
+      }
+    },
+    "config": {
+      "description": "敬社系統全局設定（當前學年與升班歷史、貢獻核分規則、表彰標準）",
+      "documents": {
+        "school_year": { "description": "當前學年與歷次升班轉檔歷程" },
+        "contribution_rules": { "description": "各活動類別標準積分範圍設定" },
+        "award_rules": { "description": "預設嘉許狀類型與分值設定" }
+      }
+    },
+    "activityLogs": {
+      "description": "系統管理員與老師管理員操作審計日誌（包含登記、任命、授勳、刪除及單步撤銷紀錄）",
+      "fields": {
+        "id": { "type": "string", "description": "日誌唯一編號" },
+        "timestamp": { "type": "string", "description": "操作ISO時間戳記" },
+        "displayTime": { "type": "string", "description": "顯示格式時間 YYYY-MM-DD HH:mm:ss" },
+        "operatorId": { "type": "string", "description": "操作人員ID" },
+        "operatorName": { "type": "string", "description": "操作人員姓名" },
+        "operatorRole": { "type": "string", "description": "操作人員權限角色" },
+        "actionType": { "type": "string", "description": "動作類別" },
+        "entityType": { "type": "string", "description": "對象類別" },
+        "title": { "type": "string", "description": "操作摘要標題" },
+        "details": { "type": "string", "description": "詳細備註與影響對象" },
+        "canUndo": { "type": "boolean", "description": "是否支援單步撤銷" },
+        "isReverted": { "type": "boolean", "optional": true, "description": "是否已被撤銷還原" },
+        "revertedAt": { "type": "string", "optional": true, "description": "撤銷執行時間" },
+        "revertedBy": { "type": "string", "optional": true, "description": "執行撤銷者姓名" }
+      }
+    },
+    "snapshots": {
+      "description": "敬社全社系統歷史版本快照（支援全庫版本一鍵還原）",
+      "fields": {
+        "id": { "type": "string", "description": "版本快照唯一編號" },
+        "versionName": { "type": "string", "description": "版本自訂或自動名稱" },
+        "timestamp": { "type": "string", "description": "建立時間戳記" },
+        "displayTime": { "type": "string", "description": "顯示時間" },
+        "createdBy": { "type": "string", "description": "快照建立者" },
+        "creatorRole": { "type": "string", "description": "建立者角色" },
+        "note": { "type": "string", "description": "存檔備註說明" },
+        "membersCount": { "type": "number", "description": "存檔時社員總人數" },
+        "contributionsCount": { "type": "number", "description": "存檔時貢獻紀錄數" },
+        "rewardsCount": { "type": "number", "description": "存檔時獎勵紀錄數" },
+        "memberBadgesCount": { "type": "number", "description": "存檔時徽章發放數" },
+        "totalPointsSum": { "type": "number", "description": "存檔時全社累積分" }
+      }
+    }
+  }
+}
